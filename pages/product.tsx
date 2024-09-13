@@ -1,14 +1,17 @@
 import ProductCardComponent from "@/components/product-card.tsx/product-card";
 import ProductCardCenteredComponent from "@/components/product-card.tsx/product-card-centered";
 import ProductCardStarComponent from "@/components/product-card.tsx/product-card-star";
+import BoxTitleComponent from "@/components/shared/box-title";
+import PcNavbarComponent from "@/components/shared/navbar/pc-navbar";
+import SmTitleComponent from "@/components/shared/sm-title";
 
 export default function Product() {
   return (
     <>
+          <PcNavbarComponent />
       <div className="flex flex-row p-10  gap-4">
         <div className="w-full flex flex-col">
           <img src="/imgs/product-16-2.jpg" />
-
         </div>
         <div className="w-full flex flex-col gap-4">
 
@@ -49,7 +52,51 @@ export default function Product() {
 
             بنگاه های باریک و باریک و چپ در این را تعظیم کردند که بسیار زیاد سلام بر روی قاشق غذاخوری که افسوس که بسیار غنی شد و در برابر مکرر روان و روان و به طور مکرر به طور قابل ملاحظه ای گرفتند. علاوه بر این و خیلی دور از خوب است که یک چتر دریایی و یکی را به دلیل آن به وجود آورد.</p>
         </div>
+        <div className="flex flex-col mx-10  mb-10">
+          <div className="border-b border-gray-200 mb-4">
+            <h1 className="border-b w-fit border-green-700 pb-2  font-bold text-2xl">بررسی مشتری</h1>
+            <div className="px-4">
+              <div className="flex flex-row  items-center">
+                <SmTitleComponent title="۵" />
+                <div className="flex w-full bg-gray-200 h-4 rounded-sm overflow-hidden">
+                  <div className=" w-2/3 h-full bg-teal-600 text-white text-center items-center justify-center text-xs "><a>35%</a></div>
+                </div>
+              </div>
 
+              <div className="flex flex-row  items-center">
+                <SmTitleComponent title="۴" />
+                <div className="flex w-full bg-gray-200 h-4 rounded-sm overflow-hidden">
+                  <div className=" w-4/12 h-full bg-teal-600 text-white text-center items-center justify-center text-xs "><a>35%</a></div>
+                </div>
+              </div>
+
+              <div className="flex flex-row  items-center">
+                <SmTitleComponent title="۳" />
+                <div className="flex w-full bg-gray-200 h-4 rounded-sm overflow-hidden">
+                  <div className=" w-10/12 h-full bg-teal-600 text-white text-center items-center justify-center text-xs "><a>35%</a></div>
+                </div>
+              </div>
+
+              <div className="flex flex-row  items-center">
+                <SmTitleComponent title="۲" />
+                <div className="flex w-full bg-gray-200 h-4 rounded-sm overflow-hidden">
+                  <div className=" w-5/12 h-full bg-teal-600 text-white text-center items-center justify-center text-xs "><a>۳۵%</a></div>
+                </div>
+              </div>
+
+              <div className="flex flex-row  items-center">
+                <SmTitleComponent title="۱ ستاره" />
+                <div className="flex w-full bg-gray-200 h-4 rounded-sm overflow-hidden">
+                  <div className=" w-1/12 h-full bg-teal-600 text-white text-center items-center justify-center text-xs "><a>۱۰%</a></div>
+                </div>
+              </div>
+              <h1 className=" text-sm text-gray-400 py-4">
+                چگونه رتبه بندی ها محاسبه می شود؟
+              </h1>
+            </div>
+
+          </div>
+        </div>
 
         <div className="flex flex-col mx-10  mb-10">
           <div className="border-b border-gray-200 mb-4">
@@ -63,6 +110,8 @@ export default function Product() {
           </div>
         </div>
       </div>
+
+
     </>
   );
 }
