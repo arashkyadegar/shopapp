@@ -3,8 +3,6 @@ import ProductCardStarComponent from "@/components/product-card.tsx/product-card
 import PcNavbarComponent from "@/components/shared/navbar/pc-navbar";
 import SmTitleComponent from "@/components/shared/sm-title";
 import { turnToFa } from "@/utility/regex";
-import { useRouter } from "next/router";
-import { Markup } from 'interweave';
 import { getDefaultImageAvator } from "@/utility/imageUtility";
 
 // This gets called on every request
