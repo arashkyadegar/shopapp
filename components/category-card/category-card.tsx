@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-export default function CategoryCardComponent({ color, title }: any) {
+export default function CategoryCardComponent() {
   return (
     <>
       {/* single product card min-h-62 min-w-62 max-h-62 max-w-62 */}

@@ -11,14 +11,13 @@ import "swiper/css/scrollbar";
 import "swiper/css/autoplay";
 import "swiper/css/effect-fade";
 import React from "react";
-import { getDefaultImageAvator } from "@/utility/imageUtility";
 import {
   Navigation,
   Pagination,
   Autoplay
 } from "swiper/modules";
 
-export default function SliderMainComponent({ images }: any) {
+export default function SliderMainComponent({ images }: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
   return (
     <div className="w-full order-1  sm:order-2 col-span-3 relative ">
       <Swiper
@@ -35,7 +34,7 @@ export default function SliderMainComponent({ images }: any) {
         effect="slide"
 
       >
-        {images.map((image: any) => (
+        {images.map((image: any) => ( // eslint-disable-line @typescript-eslint/no-explicit-any
           <SwiperSlide key={image}>
 
             <img

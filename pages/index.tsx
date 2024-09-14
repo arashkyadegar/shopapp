@@ -1,12 +1,22 @@
-import Image from "next/image";
-import localFont from "next/font/local";
 import ProductCardComponent from "@/components/product-card.tsx/product-card";
 import CategoryCardComponent from "@/components/category-card/category-card";
 import SliderMainComponent from "@/components/slider/slider-main";
 import ServiceCardComponent from "@/components/service-card/service-card";
 import PcNavbarComponent from "@/components/shared/navbar/pc-navbar";
 
-export default function Home() {
+// This gets called on every request
+export async function getServerSideProps() {
+  const baseURL = process.env.NEXT_PUBLIC_BASEURL;
+  const res = await fetch(`${baseURL}/api/wbproducts`);
+  const repo = await res.json();
+  const products = JSON.stringify(repo);
+  return { props: { products } };
+}
+
+export default function Home(props: any) {
+  const products = JSON.parse(props.products);
+
+  console.log(products)
   return (
     <>
       <PcNavbarComponent />
@@ -32,10 +42,11 @@ export default function Home() {
           </div>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-4 sm:grid-cols-2 gap-8" >
-          <ProductCardComponent color="bg-red-400" title="جدید" />
-          <ProductCardComponent color="bg-orange-400" title="پرفروش" />
-          <ProductCardComponent color="bg-pink-400" title="فروش" />
-          <ProductCardComponent color="bg-green-200" title="فروش" />
+          {products.map((item: any) => (
+            <ProductCardComponent color="bg-green-400" title="جدید" {...item}  />
+          ))}
+
+
         </div>
         <div className="flex flex-row justify-between">
 

@@ -1,13 +1,15 @@
 import React from "react";
 import Link from "next/link";
-import { getNewPrice } from "@/utility/discount";
 import { turnToFa } from "@/utility/regex";
 import ProductCardTagComponent from "./product-card-tag";
 import ProductCardStarComponent from "./product-card-star";
+import { getDefaultImageAvator } from "@/utility/imageUtility";
 
-export default function ProductCardComponent({ color, title }: any) {
+export default function ProductCardComponent(props: any) {
 
   const discount: number = 1500;
+
+  let mainImage = props.images.find((x: any) => x.status);
 
   return (
     <>
@@ -18,36 +20,33 @@ export default function ProductCardComponent({ color, title }: any) {
         <div className="overflow-hidden justify-center">
           <div className=" w-full justify-center relative">
             {discount > 0 && (
-              <ProductCardTagComponent color={color} title={title} />
+              <ProductCardTagComponent color={props.color} title={props.title} />
             )}
             <div className="flex justify-center">
               <Link
                 href={{
-                  pathname: `/product`,
-                  query: { id: '1' },
+                  pathname: `/products/${props._id}`
                 }}
               >
                 <img
-                  src='/imgs/category-thumb-1.jpg'
+                  src={mainImage ? getDefaultImageAvator(mainImage.name) : ""}
                   className="z-0  min-h-48  min-w-48 max-h-48 max-w-48 
                    rounded-xl w-fit aspect-square cursor-pointer"
-                  alt='category-thumb-1'
-                  title='category-thumb-1'
+                  alt={mainImage ? mainImage.alt : ""}
+                  title={mainImage ? mainImage.alt : ""}
                   crossOrigin="anonymous"
                 />
               </Link>
             </div>
           </div>
         </div>
-     
-          <h5 className="text-sm mt-2 px-4 text-gray-400 text-right font-semibold tracking-tight dark:text-white">
-            لباس
-          </h5>
-       
 
+        <h5 className="text-sm mt-2 px-4 text-gray-400 text-right font-semibold tracking-tight dark:text-white">
+          {props.category ? props.category.name : "نامشخص"}
+        </h5>
 
         <h5 className="text-lg mt-2 px-4 text-black text-right font-semibold tracking-tight dark:text-white">
-          پیراهن تابستانه خنک ترکیه
+          {props.name}
         </h5>
         <div className="flex flex-row px-4 mt-2">
           <div className="flex flex-row">
@@ -59,7 +58,7 @@ export default function ProductCardComponent({ color, title }: any) {
           <h1 className="text-xs">{turnToFa('95')}%</h1>
         </div>
         <h5 className="text-2xl mt-2 px-4 text-green-600 text-right font-semibold tracking-tight dark:text-white">
-          تومان ۱۳۴.۵۸
+          {turnToFa(props.price)} تومان
         </h5>
 
 

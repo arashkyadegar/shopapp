@@ -1,4 +1,4 @@
-export default function ServiceCardComponent({ color, title }: any) {
+export default function ServiceCardComponent() {
   return (
     <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
       <div className="flex flex-col border border-green-200 p-4 justify-between gap-4 rounded-sm h-40 mt-6 hover:mt-4  transition-all duration-200">

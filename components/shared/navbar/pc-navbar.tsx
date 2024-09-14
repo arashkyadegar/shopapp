@@ -1,4 +1,4 @@
-export default function PcNavbarComponent({ props }: any) {
+export default function PcNavbarComponent() {
   return (
     <nav className="sticky z-10 bg-white top-0 h-10 flex flex-row  font-bold  pt-2 justify-between text-lg">
       <div className="flex w-1/4 flex-row    justify-center">
