@@ -6,24 +6,35 @@ import PcNavbarComponent from "@/components/shared/navbar/pc-navbar";
 
 // This gets called on every request
 export async function getServerSideProps() {
+
+
   const baseURL = process.env.NEXT_PUBLIC_BASEURL;
   const res = await fetch(`${baseURL}/api/wbproducts`);
   const repo = await res.json();
   const products = JSON.stringify(repo);
-  return { props: { products } };
+
+  const res_settings = await fetch(`${baseURL}/api/wbsettings/1`);
+  const repo_settings = await res_settings.json();
+  const settings = JSON.stringify(repo_settings);
+
+  const res_categories = await fetch(`${baseURL}/api/wbcategories`);
+  const repo_categories = await res_categories.json();
+  const categories = JSON.stringify(repo_categories);
+
+  return { props: { products, settings, categories } };
 }
 
 export default function Home(props: any) {
   const products = JSON.parse(props.products);
-
-  console.log(products)
+  const settings = JSON.parse(props.settings)[0];
+  const categories = JSON.parse(props.categories);
+  console.log(categories)
   return (
     <>
-      <PcNavbarComponent />
+      <PcNavbarComponent categories={categories} />
       <div className="p-10 flex flex-col gap-4">
         <div className="flex flex-row justify-between">
-          <SliderMainComponent images={["/imgs/product-14-2.jpg", "/imgs/product-16-1.jpg", "/imgs/product-16-5.jpg"]} />
-
+          <SliderMainComponent images={settings.slideImages} />
         </div>
         <ServiceCardComponent />
         <div className="flex flex-row justify-between">
@@ -43,7 +54,7 @@ export default function Home(props: any) {
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-4 sm:grid-cols-2 gap-8" >
           {products.map((item: any) => (
-            <ProductCardComponent color="bg-green-400" title="جدید" {...item}  />
+            <ProductCardComponent key={item._id} color="bg-green-400" title="جدید" {...item} />
           ))}
 
 

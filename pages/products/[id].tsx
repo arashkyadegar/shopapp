@@ -20,7 +20,7 @@ export default function Product({ product }: any) {
   const item = JSON.parse(product)[0];
   console.log(item);
   const description = { __html: item.longdesc };
-  let mainImage = item.images.find((x: any) => x.status);
+  const mainImage = item.images.find((x: any) => x.status);
   return (
     <>
       <PcNavbarComponent />
@@ -32,7 +32,7 @@ export default function Product({ product }: any) {
           />
           <div className="flex flex-row justify-center gap-2">
             {item.images.map((item: any) => (
-              <img src={getDefaultImageAvator(item.name)} className="w-20 border hover:border-green-200 cursor-pointer" />
+              <img key={item.name} src={getDefaultImageAvator(item.name)} className="w-20 border hover:border-green-200 cursor-pointer" />
             ))}
           </div>
         </div>

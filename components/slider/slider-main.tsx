@@ -16,8 +16,10 @@ import {
   Pagination,
   Autoplay
 } from "swiper/modules";
+import { getDefaultImageAvator } from "@/utility/imageUtility";
 
 export default function SliderMainComponent({ images }: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
+
   return (
     <div className="w-full order-1  sm:order-2 col-span-3 relative ">
       <Swiper
@@ -25,7 +27,7 @@ export default function SliderMainComponent({ images }: any) { // eslint-disable
         modules={[Navigation, Pagination, Autoplay]}
         spaceBetween={20}
         slidesPerView={1}
-        navigation={true}
+        // navigation={true}
         autoplay={true}
         pagination={{
           clickable: true,
@@ -36,13 +38,12 @@ export default function SliderMainComponent({ images }: any) { // eslint-disable
       >
         {images.map((image: any) => ( // eslint-disable-line @typescript-eslint/no-explicit-any
           <SwiperSlide key={image}>
-
             <img
-              src={image}
+              src={getDefaultImageAvator(image.name)}
               width={500}
               height={500}
               className="w-full h-36 aspect-video"
-              alt="lopencandy"
+              alt={image.alt}
               crossOrigin="anonymous"
             />
           </SwiperSlide>

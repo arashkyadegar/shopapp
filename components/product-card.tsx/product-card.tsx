@@ -9,7 +9,7 @@ export default function ProductCardComponent(props: any) {
 
   const discount: number = 1500;
 
-  let mainImage = props.images.find((x: any) => x.status);
+  const mainImage = props.images.find((x: any) => x.status);
 
   return (
     <>
