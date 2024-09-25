@@ -1,12 +1,14 @@
+import MegaMenuComponent from "@/components/mega-menu/mega-menu";
 import TreeView from "../treeview/treeview";
 
 export default function PcNavbarComponent({ categories }: any) {
   return (
     <nav className="sticky hidden z-10 bg-white top-0 h-10 md:flex flex-row  font-bold  pt-2 justify-between text-lg">
       <div className="flex w-1/4 flex-row    justify-center">
-        <div className="text-[#088178]">
+        {/* <div className="text-[#088178]">
           <TreeView treeData={categories}  />
-        </div>
+        </div> */}
+        <MegaMenuComponent categories={categories} />
       </div>
 
       <div className="flex  w-full flex-row justify-between   ">

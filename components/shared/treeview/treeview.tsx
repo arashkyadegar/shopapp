@@ -4,7 +4,6 @@ const TreeNode = ({ node, onclickFunc }: any) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const handleToggle = () => {
-    setIsExpanded(false);
     setIsExpanded(!isExpanded);
   };
 
@@ -26,7 +25,7 @@ const TreeNode = ({ node, onclickFunc }: any) => {
       {isExpanded && (
         <ul className="child-nodes absolute bg-white right-full top-0 min-w-20  mr-0.5">
           {node.children.map((childNode: any) => (
-            <li key={childNode.id} className='cursor-pointer' onClick={onclickFunc} id={childNode.id} x-value={node.id}>
+            <li key={childNode.id} className='cursor-pointer peer' onClick={onclickFunc} id={childNode.id} x-value={node.id}>
               <TreeNode node={childNode} />
             </li>
           ))}
@@ -39,7 +38,7 @@ const TreeNode = ({ node, onclickFunc }: any) => {
 export default function TreeView({ treeData, onclickFunc }: any) {
   return (
     <div className='bg-white'>
-      <ul>
+      <ul className='peer-hover:expanded'>
         <li className='flex flex-row items-center gap-2'>
 
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-3">
