@@ -38,7 +38,7 @@ const TreeNode = ({ node, onclickFunc }: any) => {
 export default function TreeView({ treeData, onclickFunc }: any) {
   return (
     <div className='bg-white'>
-      <ul className='peer-hover:expanded'>
+      <ul className=''>
         <li className='flex flex-row items-center gap-2'>
 
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-3">

@@ -3,6 +3,9 @@ import CategoryCardComponent from "@/components/category-card/category-card";
 import SliderMainComponent from "@/components/slider/slider-main";
 import ServiceCardComponent from "@/components/service-card/service-card";
 import PcNavbarComponent from "@/components/shared/navbar/pc-navbar";
+import { useAppDispatch, useAppSelector } from "@/redux/store/hooks";
+import { useEffect } from "react";
+import { getCategoriesAction } from "@/redux/store/category/category-action";
 
 // This gets called on every request
 export async function getServerSideProps() {
@@ -28,20 +31,20 @@ export default function Home(props: any) {
   const products = JSON.parse(props.products);
   const settings = JSON.parse(props.settings)[0];
   const categories = JSON.parse(props.categories);
-  console.log(categories)
+
   return (
     <>
-      <PcNavbarComponent categories={categories} />
-      <div className="p-10 flex flex-col gap-4">
+      <PcNavbarComponent />
+      <div className="pt-4 px-10 flex flex-col gap-4">
         <div className="flex flex-row justify-between">
           <SliderMainComponent images={settings.slideImages} />
         </div>
         <ServiceCardComponent />
         <div className="flex flex-row justify-between">
           <div className="flex gap-4 text-lg relative h-12">
-            <button className="px-4 py-2 h-11 bg-orange-200 rounded-sm hover:-mt-2 duration-200">ویژه</button>
-            <button className="px-4 py-2 h-11 bg-gray-200 rounded-sm  hover:-mt-2 duration-200">محبوب</button>
-            <button className="px-4 py-2 h-11 bg-gray-200 rounded-sm hover:-mt-2 duration-200">تازه اضافه شده</button>
+            <button className="px-4 py-2 h-11 bg-orange-200 rounded-sm hover:-mt-1 duration-150">ویژه</button>
+            <button className="px-4 py-2 h-11 bg-gray-200 rounded-sm  hover:-mt-1 duration-150">محبوب</button>
+            <button className="px-4 py-2 h-11 bg-gray-200 rounded-sm hover:-mt-1 duration-150">تازه اضافه شده</button>
 
           </div>
           <div className="flex flex-row items-center gap-1 text-green-800 font-bold">

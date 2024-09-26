@@ -37,7 +37,7 @@ export default function SliderMainComponent({ images }: any) { // eslint-disable
 
       >
         {images.map((image: any) => ( // eslint-disable-line @typescript-eslint/no-explicit-any
-          <SwiperSlide key={image}>
+          <SwiperSlide      key={image.name}>
             <img
               src={getDefaultImageAvator(image.name)}
               width={500}
