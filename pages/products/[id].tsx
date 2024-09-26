@@ -4,6 +4,7 @@ import PcNavbarComponent from "@/components/shared/navbar/pc-navbar";
 import SmTitleComponent from "@/components/shared/sm-title";
 import { turnToFa } from "@/utility/regex";
 import { getDefaultImageAvator } from "@/utility/imageUtility";
+import { div } from "framer-motion/client";
 
 // This gets called on every request
 export async function getServerSideProps(context: any) {
@@ -80,6 +81,22 @@ export default function Product({ product }: any) {
             {item.longdesc}
           </div>
         </div>
+        {item.extras.length > 0 && (
+          <div className="flex flex-col mx-10  mb-10">
+            <div className="border-b border-gray-200 mb-4">
+              <h1 className="border-b w-fit border-green-700 pb-2  font-bold text-2xl">اطلاعات اضافی</h1>
+            </div>
+            <div className="grid grid-cols-2 text-md border" >
+              {item.extras.map((item: any) => (
+                <div>
+                  <div className="border-l border-b p-2 bg-white">{item.name}</div>
+                  <div className="border-l border-b p-2 bg-gray-50">{item.value}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         <div className="flex flex-col mx-10  mb-10">
           <div className="border-b border-gray-200 mb-4">
             <h1 className="border-b w-fit border-green-700 pb-2  font-bold text-2xl">بررسی مشتری</h1>
