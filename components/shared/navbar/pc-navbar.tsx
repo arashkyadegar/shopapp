@@ -3,7 +3,7 @@ import TreeView from "../treeview/treeview";
 
 export default function PcNavbarComponent({ categories }: any) {
   return (
-    <nav className="sticky hidden z-10 bg-white top-0 h-12 md:flex flex-row  pt-2 justify-center">
+    <nav className="sticky hidden z-10 bg-white top-0 h-12 md:flex flex-row  pt-2 justify-center border-b border-black">
       <div className="group block z-50">
         <button
           aria-haspopup="true"

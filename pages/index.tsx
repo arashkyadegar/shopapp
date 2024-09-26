@@ -6,6 +6,7 @@ import PcNavbarComponent from "@/components/shared/navbar/pc-navbar";
 import { useAppDispatch, useAppSelector } from "@/redux/store/hooks";
 import { useEffect } from "react";
 import { getCategoriesAction } from "@/redux/store/category/category-action";
+import SliderBrandComponent from "@/components/slider/slider-brand";
 
 // This gets called on every request
 export async function getServerSideProps() {
@@ -24,28 +25,36 @@ export async function getServerSideProps() {
   const repo_categories = await res_categories.json();
   const categories = JSON.stringify(repo_categories);
 
-  return { props: { products, settings, categories } };
+  const res_brands = await fetch(`${baseURL}/api/wbbrands`);
+  const repo_brands = await res_brands.json();
+  const brands = JSON.stringify(repo_brands);
+
+  return { props: { products, settings, categories, brands } };
 }
 
 export default function Home(props: any) {
   const products = JSON.parse(props.products);
   const settings = JSON.parse(props.settings)[0];
   const categories = JSON.parse(props.categories);
-
+  const brands = JSON.parse(props.brands);
   return (
-    <div className="container">
+    <div className="">
       <PcNavbarComponent />
       <div className="pt-4 px-10 flex flex-col gap-4">
         <div className="flex flex-row justify-between">
           <SliderMainComponent images={settings.slideImages} />
         </div>
+
         <ServiceCardComponent />
+        <div>
+          <img src="/banner/banner-4.png" alt="" />
+        </div>
+
         <div className="flex flex-col sm:flex-row justify-between">
-          <div className="flex flex-col justify-between sm:flex-row gap-4 text-lg relative">
+          <div className="flex flex-col justify-center sm:justify-between sm:flex-row   gap-4 text-lg relative">
             <button className="px-4 py-2 h-11 bg-orange-200 rounded-sm hover:-mt-1 duration-150">ویژه</button>
             <button className="px-4 py-2 h-11 bg-gray-200 rounded-sm  hover:-mt-1 duration-150">محبوب</button>
             <button className="px-4 py-2 h-11 bg-gray-200 rounded-sm hover:-mt-1 duration-150">تازه اضافه شده</button>
-
           </div>
           <a href="#" className="flex flex-row items-center m-2 justify-center gap-2 text-green-800 font-bold">
             دیدن بقیه
@@ -55,6 +64,7 @@ export default function Home(props: any) {
 
           </a>
         </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-4 sm:grid-cols-2 gap-8" >
           {products.map((item: any) => (
             <ProductCardComponent key={item._id} color="bg-green-400" title="جدید" {...item} />
@@ -62,6 +72,29 @@ export default function Home(props: any) {
 
 
         </div>
+
+        <div>
+          <h1 className="text-2xl font-bold text-green-800">مارک ویژه<span className="text-black"> محبوب</span></h1>
+          <SliderBrandComponent images={brands} />
+        </div>
+      </div>
+
+      <div className="flex flex-row w-full gap-8 p-10 ">
+        <div >
+          <img className="w-full" src="/banner/banner-1.png" alt="" />
+        </div>
+        <div>
+          <img className="w-full" src="/banner/banner-2.png" alt="" />
+        </div>
+        <div>
+          <img className="w-full" src="/banner/banner-3.png" alt="" />
+        </div>
+
+      </div>
+
+
+
+      <div className="">
         <div className="flex flex-row justify-between">
 
           <h1 className="text-2xl font-bold text-green-800">دسته بندی های<span className="text-black"> محبوب</span></h1>
@@ -83,7 +116,6 @@ export default function Home(props: any) {
           <CategoryCardComponent />
 
         </div>
-
       </div>
     </div>
   );
