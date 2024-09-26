@@ -33,27 +33,27 @@ export default function Home(props: any) {
   const categories = JSON.parse(props.categories);
 
   return (
-    <>
+    <div className="container">
       <PcNavbarComponent />
       <div className="pt-4 px-10 flex flex-col gap-4">
         <div className="flex flex-row justify-between">
           <SliderMainComponent images={settings.slideImages} />
         </div>
         <ServiceCardComponent />
-        <div className="flex flex-row justify-between">
-          <div className="flex gap-4 text-lg relative h-12">
+        <div className="flex flex-col sm:flex-row justify-between">
+          <div className="flex flex-col justify-between sm:flex-row gap-4 text-lg relative">
             <button className="px-4 py-2 h-11 bg-orange-200 rounded-sm hover:-mt-1 duration-150">ویژه</button>
             <button className="px-4 py-2 h-11 bg-gray-200 rounded-sm  hover:-mt-1 duration-150">محبوب</button>
             <button className="px-4 py-2 h-11 bg-gray-200 rounded-sm hover:-mt-1 duration-150">تازه اضافه شده</button>
 
           </div>
-          <div className="flex flex-row items-center gap-1 text-green-800 font-bold">
+          <a href="#" className="flex flex-row items-center m-2 justify-center gap-2 text-green-800 font-bold">
             دیدن بقیه
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-3">
               <path strokeLinecap="round" strokeLinejoin="round" d="m18.75 4.5-7.5 7.5 7.5 7.5m-6-15L5.25 12l7.5 7.5" />
             </svg>
 
-          </div>
+          </a>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-4 sm:grid-cols-2 gap-8" >
           {products.map((item: any) => (
@@ -85,6 +85,6 @@ export default function Home(props: any) {
         </div>
 
       </div>
-    </>
+    </div>
   );
 }

@@ -1,6 +1,6 @@
 export default function ServiceCardComponent() {
   return (
-    <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
+    <div className="grid grid-cols-3 sm:grid-cols-6 text-xs sm:text-base gap-2">
       <div className="flex flex-col border border-green-200 p-4 justify-between gap-4 rounded-sm h-40 mt-6 hover:mt-4  transition-all duration-200">
         <img src="/feature-1.png" className="w-28" />
         <h1 className="text-[#088178] font-bold bg-pink-100 text-center py-2 rounded-md">حمل و نقل رایگان</h1>
