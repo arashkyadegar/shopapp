@@ -33,7 +33,7 @@ export default function ProductCardComponent(props: any) {
                   className="z-0   w-full aspect-square cursor-pointer  rounded-xl"
                   alt={mainImage ? mainImage.alt : ""}
                   title={mainImage ? mainImage.alt : ""}
-                  crossOrigin="anonymous"
+                  // crossOrigin="anonymous"
                 />
               </Link>
             </div>

@@ -5,6 +5,9 @@ import ServiceCardComponent from "@/components/service-card/service-card";
 import PcNavbarComponent from "@/components/shared/navbar/pc-navbar";
 import SliderBrandComponent from "@/components/slider/slider-brand";
 import NewsletterComponent from "@/components/newsletter/newsletter";
+import BannerComponent from "@/components/banner/banner";
+import FooterComponent from "@/components/footer/footer";
+import BannerBigComponent from "@/components/banner/banner-big";
 
 // This gets called on every request
 export async function getServerSideProps() {
@@ -32,6 +35,7 @@ export async function getServerSideProps() {
 
 export default function Home(props: any) {
   const products = JSON.parse(props.products);
+  const categories = JSON.parse(props.categories);
   const settings = JSON.parse(props.settings)[0];
   const brands = JSON.parse(props.brands);
   return (
@@ -43,10 +47,10 @@ export default function Home(props: any) {
         </div>
 
         <ServiceCardComponent />
-        <div>
-          <img src="/banner/banner-4.png" alt="" />
-        </div>
 
+        <div>
+          <BannerBigComponent image="banner-8.jpg" title="تخفیف ۴۰ ٪ بمناسبت روز مادر" main="روز مادر مبارک." footer="" />
+        </div>
         <div className="flex flex-col sm:flex-row justify-between">
           <div className="flex flex-col justify-center sm:justify-between sm:flex-row   gap-4 text-lg relative">
             <button className="px-4 py-2 h-11 bg-orange-200 rounded-sm hover:-mt-1 duration-150">ویژه</button>
@@ -58,7 +62,6 @@ export default function Home(props: any) {
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-3">
               <path strokeLinecap="round" strokeLinejoin="round" d="m18.75 4.5-7.5 7.5 7.5 7.5m-6-15L5.25 12l7.5 7.5" />
             </svg>
-
           </a>
         </div>
 
@@ -66,8 +69,6 @@ export default function Home(props: any) {
           {products.map((item: any) => (
             <ProductCardComponent key={item._id} color="bg-green-400" title="جدید" {...item} />
           ))}
-
-
         </div>
 
         <div className="flex flex-col items-center justify-center sm:items-start bg-[#F4F1F0] p-4 gap-4">
@@ -76,63 +77,47 @@ export default function Home(props: any) {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 w-full gap-8 p-10">
-        <div className="relative group overflow-hidden" >
-          <img className="w-full" src="/banner/banner-1.png" alt="" />
-          <div className="absolute top-2 right-4 group-hover:right-6 transition-all duration-150">
-            <h1 className=" text-sm text-gray-500">پیشنهاد هوشمندانه</h1>
-            <h1 className=" text-lg">۲۰ ٪ پس انداز کنید
-              <br />کیف زنانه</h1>
-            <a href="#" className="hover:text-sm text-xs text-green-800 transition-all duration-150">اکنون خرید کنید</a>
-          </div>
-        </div>
-        <div className="relative group">
-          <img className="w-full" src="/banner/banner-2.png" alt="" />
-          <div className="absolute top-2 right-4 group-hover:right-6 transition-all duration-150">
-            <h1 className=" text-sm text-gray-500 ">پیشنهاد هوشمندانه</h1>
-            <h1 className=" text-lg">۲۰ ٪ پس انداز کنید
-              <br />کیف زنانه</h1>
-            <a href="#" className="hover:text-sm text-xs text-green-800 transition-all duration-150">اکنون خرید کنید</a>
-          </div>
-        </div>
-        <div className="relative group" >
-          <img className="w-full" src="/banner/banner-3.png" alt="" />
-          <div className="absolute top-2 right-4 group-hover:right-6 transition-all duration-150">
-            <h1 className=" text-sm text-gray-500">پیشنهاد هوشمندانه</h1>
-            <h1 className=" text-lg">۲۰ ٪ پس انداز کنید
-              <br />کیف زنانه</h1>
-            <a href="#" className="hover:text-sm text-xs text-green-800 transition-all duration-150">اکنون خرید کنید</a>
-          </div>
-        </div>
 
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 w-full gap-8 p-10">
+        <BannerComponent image="banner-1.png" title="پیشنهاد هوشمندانه"
+          main="۲۰ ٪ پس انداز کنید کیف زنانه" footer="" />
+        <BannerComponent image="banner-2.png" title="حراج" main="تابستان گرم عالی مجموعه" footer="" />
+        <BannerComponent image="banner-3.png" title="ورود جدید" main="خرید امروز معاملات و پیشنهادات" footer="" />
       </div>
-      <NewsletterComponent />
+
+      <div className="pt-4 px-10 flex flex-col gap-4">
+        <BannerBigComponent image="banner-4.png" title="ورود جدید" main="خرید امروز معاملات و پیشنهادات" footer="" />
+      </div>
+
       <div className="pt-4 px-10 flex flex-col gap-4">
 
-        <div className="">
-          <div className="flex flex-row justify-between">
 
-            <h1 className="text-2xl font-bold text-green-800">دسته بندی های<span className="text-black"> محبوب</span></h1>
-            <div className="flex flex-row-reverse items-center gap-1 text-green-800 font-bold">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6 rounded-full bg-green-100 hover:bg-green-200">
-                <path strokeLinecap="round" strokeLinejoin="round" d="m11.25 9-3 3m0 0 3 3m-3-3h7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-              </svg>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6 rounded-full bg-green-100 hover:bg-green-200">
-                <path strokeLinecap="round" strokeLinejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-              </svg>
+        <div className="flex flex-row justify-between">
 
-            </div>
+          <h1 className="text-2xl font-bold text-green-800">دسته بندی های<span className="text-black"> محبوب</span></h1>
+          <div className="flex flex-row-reverse items-center gap-1 text-green-800 font-bold">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6 rounded-full bg-green-100 hover:bg-green-200">
+              <path strokeLinecap="round" strokeLinejoin="round" d="m11.25 9-3 3m0 0 3 3m-3-3h7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6 rounded-full bg-green-100 hover:bg-green-200">
+              <path strokeLinecap="round" strokeLinejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+            </svg>
+
           </div>
-
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 sm:grid-cols-2 gap-8" >
-          <CategoryCardComponent />
-          <CategoryCardComponent />
-          <CategoryCardComponent />
-          <CategoryCardComponent />
-          NewsletterComponent</div>
+          {categories.map((item: any) => (
+            <CategoryCardComponent  {...item} />
+          ))}
+
+        </div>
       </div>
+      <NewsletterComponent />
+
+
+      <FooterComponent />
     </div>
+
   );
 }

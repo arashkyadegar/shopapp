@@ -1,7 +1,9 @@
 import React from "react";
 import Link from "next/link";
+import { getDefaultImageAvator } from "@/utility/imageUtility";
 
-export default function CategoryCardComponent() {
+export default function CategoryCardComponent(props: any) {
+  console.log(props)
   return (
     <>
       {/* single product card min-h-62 min-w-62 max-h-62 max-w-62 */}
@@ -19,19 +21,19 @@ export default function CategoryCardComponent() {
                 }}
               >
                 <img
-                  src='/imgs/category-thumb-1.jpg'
+                  src={getDefaultImageAvator(props.image)}
                   className="z-0  min-h-48  min-w-48 max-h-48 max-w-48 
                    rounded-xl w-fit aspect-square cursor-pointer hover:scale-110 duration-150"
                   alt='category-thumb-1'
                   title='category-thumb-1'
-                  crossOrigin="anonymous"
+                  // crossOrigin="anonymous"
                 />
               </Link>
             </div>
           </div>
         </div>
         <h5 className="text-lg mt-2 px-4 text-black text-center font-semibold tracking-tight dark:text-white">
-        لباس
+          {props.name}
         </h5>
 
       </div>
