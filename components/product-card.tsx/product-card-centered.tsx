@@ -32,7 +32,7 @@ export default function ProductCardCenteredComponent({ color, title }: any) {
                    rounded-xl w-fit aspect-square cursor-pointer"
                   alt='category-thumb-1'
                   title='category-thumb-1'
-                  crossOrigin="anonymous"
+                  // crossOrigin="anonymous"
                 />
               </Link>
             </div>

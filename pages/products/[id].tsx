@@ -4,8 +4,6 @@ import PcNavbarComponent from "@/components/shared/navbar/pc-navbar";
 import SmTitleComponent from "@/components/shared/sm-title";
 import { turnToFa } from "@/utility/regex";
 import { getDefaultImageAvator } from "@/utility/imageUtility";
-import { div } from "framer-motion/client";
-
 // This gets called on every request
 export async function getServerSideProps(context: any) {
   const { id } = context.params;
@@ -19,7 +17,6 @@ export async function getServerSideProps(context: any) {
 
 export default function Product({ product }: any) {
   const item = JSON.parse(product)[0];
-  console.log(item);
   const Desc = { __html: item.desc };
   const longDesc = { __html: item.longdesc };
   const mainImage = item.images.find((x: any) => x.status);
@@ -62,7 +59,7 @@ export default function Product({ product }: any) {
 
             <a>دسته :</a>
             {item.tags.map((item: any) => (
-              <a href="#" className="text-gray-400">{item}</a>
+              <a key={item} href="#" className="text-gray-400">{item}</a>
             ))}
           </div>
           <h5 className="text-2xl p-2 flex flex-col sm:flex-row text-green-600 text-right font-semibold  dark:text-white  border-b border-gray-200">
@@ -121,19 +118,21 @@ export default function Product({ product }: any) {
           </div>
         </div>
         {item.extras.length > 0 && (
-          <div className="flex flex-col mx-10  mb-10">
+          <div className="flex flex-col mx-10  mb-10" >
             <div className="border-b border-gray-200 mb-4">
               <h1 className="border-b w-fit border-green-700 pb-2  font-bold text-2xl">اطلاعات اضافی</h1>
             </div>
-            <div className="grid grid-cols-2 text-md border" >
-              {item.extras.map((item: any) => (
-                <div>
-                  <div className="border-l border-b p-2 bg-white">{item.name}</div>
-                  <div className="border-l border-b p-2 bg-gray-50">{item.value}</div>
-                </div>
-              ))}
+       
+              <div className="flex flex-col text-md border" >
+                {item.extras.map((item: any) => (
+                  <div className="flex flex-row text-md border" key={item.name}>
+                    <div className="w-full border-l border-b p-2 bg-white">{item.name}</div>
+                    <div className="w-full border-l border-b p-2 bg-gray-50">{item.value}</div>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
+     
         )}
 
         <div className="flex flex-col mx-10  mb-10">

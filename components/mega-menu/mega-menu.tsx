@@ -22,7 +22,7 @@ export default function MegaMenuComponent({ categories }: any) {
       <div className="bg-gray-50 text-sm absolute mt-4 right-4 flex flex-row  w-[900px] h-60 border border-gray-300">
         <ul className="w-1/4 overflow-y-scroll bg-gray-100" >
           {categriesState.list.filter(item => item.parent == 0).map((item) => (
-            <li className="  cursor-pointer transition-all duration-150  flex flex-row items-center gap-2 px-2 py-3 hover:text-red-400 hover:bg-gray-50">
+            <li key={item.name} className="  cursor-pointer transition-all duration-150  flex flex-row items-center gap-2 px-2 py-3 hover:text-red-400 hover:bg-gray-50">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
               </svg>
@@ -39,7 +39,7 @@ export default function MegaMenuComponent({ categories }: any) {
               <div className="  cursor-pointer transition-all duration-150 flex flex-col items-start gap-2  py-3 text-gray-400 text-xs">
                 {categriesState.list.map((item: any) => (
                   item.children.map((child: any) => (
-                    <a className=" hover:text-red-600 ">{child.name}</a>
+                    <a key={child.name} className=" hover:text-red-600 ">{child.name}</a>
                   ))
                 ))}
 

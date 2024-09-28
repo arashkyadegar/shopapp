@@ -22,7 +22,7 @@ export default function ProductCardComponent(props: any) {
             {discount > 0 && (
               <ProductCardTagComponent color={props.color} title={props.title} />
             )}
-            <div className="flex justify-center">
+            <div className="flex justify-center w-full">
               <Link
                 href={{
                   pathname: `/products/${props._id}`
@@ -30,8 +30,7 @@ export default function ProductCardComponent(props: any) {
               >
                 <img
                   src={mainImage ? getDefaultImageAvator(mainImage.name) : ""}
-                  className="z-0  min-h-48  min-w-48 max-h-48 max-w-48 
-                   rounded-xl w-fit aspect-square cursor-pointer"
+                  className="z-0   w-full aspect-square cursor-pointer  rounded-xl"
                   alt={mainImage ? mainImage.alt : ""}
                   title={mainImage ? mainImage.alt : ""}
                   crossOrigin="anonymous"

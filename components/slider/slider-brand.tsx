@@ -21,7 +21,7 @@ import { getDefaultImageAvator } from "@/utility/imageUtility";
 export default function SliderBrandComponent({ images }: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
 console.log(images)
   return (
-    <div className="w-full  col-span-3 relative ">
+    <div className="w-full  col-span-3 relative bg-transparent">
       <Swiper
         className="w-full h-60"
         modules={[Navigation, Pagination, Autoplay]}
@@ -38,9 +38,9 @@ console.log(images)
               src={getDefaultImageAvator(image.image)}
               width={500}
               height={500}
-              className="w-full h-36 aspect-video"
+              className="w-full h-36 aspect-video  bg-transparent"
               alt={image.name}
-              crossOrigin="anonymous"
+              // crossOrigin="anonymous"
             />
           </SwiperSlide>
         ))}

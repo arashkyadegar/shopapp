@@ -44,7 +44,7 @@ export default function SliderMainComponent({ images }: any) { // eslint-disable
               height={500}
               className="w-full h-36 aspect-video"
               alt={image.alt}
-              crossOrigin="anonymous"
+              // crossOrigin="anonymous"
             />
           </SwiperSlide>
         ))}
