@@ -8,6 +8,7 @@ import NewsletterComponent from "@/components/newsletter/newsletter";
 import BannerComponent from "@/components/banner/banner";
 import FooterComponent from "@/components/footer/footer";
 import BannerBigComponent from "@/components/banner/banner-big";
+import BasketComponent from "@/components/basket/basket";
 
 // This gets called on every request
 export async function getServerSideProps() {
@@ -40,14 +41,14 @@ export default function Home(props: any) {
   const brands = JSON.parse(props.brands);
   return (
     <div className="">
+
       <PcNavbarComponent />
       <div className="pt-4 px-10 flex flex-col gap-4">
         <div className="flex flex-row justify-between">
           <SliderMainComponent images={settings.slideImages} />
         </div>
-
+        <BasketComponent />
         <ServiceCardComponent />
-
         <div>
           <BannerBigComponent image="banner-8.jpg" title="تخفیف ۴۰ ٪ بمناسبت روز مادر" main="روز مادر مبارک." footer="" />
         </div>
@@ -88,12 +89,8 @@ export default function Home(props: any) {
       <div className="pt-4 px-10 flex flex-col gap-4">
         <BannerBigComponent image="banner-4.png" title="ورود جدید" main="خرید امروز معاملات و پیشنهادات" footer="" />
       </div>
-
       <div className="pt-4 px-10 flex flex-col gap-4">
-
-
         <div className="flex flex-row justify-between">
-
           <h1 className="text-2xl font-bold text-green-800">دسته بندی های<span className="text-black"> محبوب</span></h1>
           <div className="flex flex-row-reverse items-center gap-1 text-green-800 font-bold">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6 rounded-full bg-green-100 hover:bg-green-200">
@@ -102,7 +99,6 @@ export default function Home(props: any) {
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6 rounded-full bg-green-100 hover:bg-green-200">
               <path strokeLinecap="round" strokeLinejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
             </svg>
-
           </div>
         </div>
 

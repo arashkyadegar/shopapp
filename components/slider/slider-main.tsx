@@ -37,15 +37,17 @@ export default function SliderMainComponent({ images }: any) { // eslint-disable
 
       >
         {images.map((image: any) => ( // eslint-disable-line @typescript-eslint/no-explicit-any
-          <SwiperSlide      key={image.name}>
+          <SwiperSlide key={image.name}>
+
             <img
               src={getDefaultImageAvator(image.name)}
               width={500}
               height={500}
               className="w-full h-36 aspect-video"
               alt={image.alt}
-              // crossOrigin="anonymous"
+            // crossOrigin="anonymous"
             />
+
           </SwiperSlide>
         ))}
       </Swiper>

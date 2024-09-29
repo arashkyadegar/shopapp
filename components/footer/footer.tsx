@@ -5,7 +5,7 @@ export default function FooterComponent({ categories }: any) {
     <>
       <div className="flex flex-col">
         <div className="flex flex-col sm:flex-row m-6">
-          <div className="flex flex-col w-full sm:w-2/3 gap-1 text-gray-500">
+          <div className="flex flex-col w-full sm:w-2/3 gap-1 text-gray-500 mb-6">
             <p>تماس با ما</p>
             <p className="">
               <a className="font-bold text-black">آدرس : </a>
@@ -23,14 +23,9 @@ export default function FooterComponent({ categories }: any) {
               <a href="#"><img src="/icon/pinterest-180-svgrepo-com.svg" /></a>
               <a href="#"><img src="/icon/twitter-svgrepo-com.svg" /></a>
               <a href="#"><img src="/icon/youtube-168-svgrepo-com.svg" /></a>
-
-
-
-
-
             </div>
-          </div>
-          <div className="w-full flex flex-col sm:w-1/3 text-gray-500 gap-1">
+          </div >
+          <div className="w-full flex flex-col sm:w-1/3 text-gray-500 gap-1 mb-6">
             <p className="font-bold text-black">درباره</p>
             <ul className="w-2/3 flex flex-col gap-1 ">
               <li><a href="#" className="hover:mr-1 transition-all duration-200">درباره ما</a></li>
@@ -41,7 +36,7 @@ export default function FooterComponent({ categories }: any) {
               <li><a href="#" className="hover:mr-1 transition-all duration-200">مرکز پشتیبانی</a></li>
             </ul>
           </div>
-          <div className="w-full flex flex-col sm:w-1/3 text-gray-500  gap-1">
+          <div className="w-full flex flex-col sm:w-1/3 text-gray-500  gap-1 mb-6">
             <p className="font-bold text-black">اکانت ما</p>
             <ul className="w-full flex flex-col gap-1">
               <li><a href="#" className="hover:mr-1 transition-all duration-200">ورود</a></li>
@@ -52,16 +47,22 @@ export default function FooterComponent({ categories }: any) {
               <li><a href="#" className="hover:mr-1 transition-all duration-200">سفارش</a></li>
             </ul>
           </div>
-          <div className="w-full flex flex-col sm:w-1/3 text-gray-500  gap-1">
+          <div className="w-full flex flex-col sm:w-1/3 text-gray-500  gap-2 mb-6">
             <p className="font-bold text-black">نصب برنامه</p>
             <ul className="w-full flex flex-col gap-1">
               <li><a className="">از اپ استور یا گوگل پلی</a></li>
             </ul>
+            <button className="w-fit mt-4 border transition-all duration-150 hover:border-black  outline-none border-gray-150 rounded-md p-1">
+              <img src="/icon/google-play.jpg" />
+              </button>
+            <button className="w-fit border transition-all duration-150 hover:border-black  outline-none border-gray-150 rounded-md p-1"><img src="/icon/app-store.jpg" /></button>
+
           </div>
         </div>
       </div>
       <div className="flex flex-row justify-end border-t  text-sm  text-gray-500  m-6 p-4">
         <p>کلیه حقوق محفوظ است </p>
+
       </div>
     </>
   );
