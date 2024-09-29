@@ -1,4 +1,4 @@
-export default function BannerBigComponent({ image, title, main, footer }: any) {
+export default function BannerBigComponent({ image, title, main }: any) {
   const url = `/banner/${image}`;
   return (
     <div className="relative overflow-hidden group text-xs md:text-lg" >

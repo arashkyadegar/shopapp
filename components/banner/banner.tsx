@@ -1,4 +1,4 @@
-export default function BannerComponent({ image, title, main, footer }: any) {
+export default function BannerComponent({ image, title, main }: any) {
   const url = `/banner/${image}`;
   return (
     <div className="relative group overflow-hidden" >

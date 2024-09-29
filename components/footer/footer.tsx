@@ -1,6 +1,4 @@
-import { div } from "framer-motion/client"
-
-export default function FooterComponent({ categories }: any) {
+export default function FooterComponent() {
   return (
     <>
       <div className="flex flex-col">
@@ -52,10 +50,10 @@ export default function FooterComponent({ categories }: any) {
             <ul className="w-full flex flex-col gap-1">
               <li><a className="">از اپ استور یا گوگل پلی</a></li>
             </ul>
-            <button className="w-fit mt-4 border transition-all duration-150 hover:border-black  outline-none border-gray-150 rounded-md p-1">
+            <button className="w-fit mt-4 border transition-all duration-150 hover:border-gray-300  outline-none border-gray-150 rounded-md p-1">
               <img src="/icon/google-play.jpg" />
               </button>
-            <button className="w-fit border transition-all duration-150 hover:border-black  outline-none border-gray-150 rounded-md p-1"><img src="/icon/app-store.jpg" /></button>
+            <button className="w-fit border transition-all duration-150 hover:border-gray-300  outline-none border-gray-150 rounded-md p-1"><img src="/icon/app-store.jpg" /></button>
 
           </div>
         </div>

@@ -8,7 +8,7 @@ import NewsletterComponent from "@/components/newsletter/newsletter";
 import BannerComponent from "@/components/banner/banner";
 import FooterComponent from "@/components/footer/footer";
 import BannerBigComponent from "@/components/banner/banner-big";
-import BasketComponent from "@/components/basket/basket";
+
 
 // This gets called on every request
 export async function getServerSideProps() {
@@ -45,9 +45,11 @@ export default function Home(props: any) {
       <PcNavbarComponent />
       <div className="pt-4 px-10 flex flex-col gap-4">
         <div className="flex flex-row justify-between">
-          <SliderMainComponent images={settings.slideImages} />
+          {settings && (
+            <SliderMainComponent images={settings.slideImages} />
+          )}
         </div>
-        <BasketComponent />
+
         <ServiceCardComponent />
         <div>
           <BannerBigComponent image="banner-8.jpg" title="تخفیف ۴۰ ٪ بمناسبت روز مادر" main="روز مادر مبارک." footer="" />
@@ -104,7 +106,7 @@ export default function Home(props: any) {
 
         <div className="grid grid-cols-1 lg:grid-cols-4 sm:grid-cols-2 gap-8" >
           {categories.map((item: any) => (
-            <CategoryCardComponent  {...item} />
+            <CategoryCardComponent key={item._id}  {...item} />
           ))}
 
         </div>
