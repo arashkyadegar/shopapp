@@ -27,6 +27,7 @@
 .swiper-pagination {
  bottom :-4px !important;
 }
+
 body {
   direction: rtl;
   color: var(--foreground);
@@ -95,12 +96,12 @@ li > ul {
 li:hover > ul {
   transform: translatex(101%) scale(1);
 }
-li > button svg {
+/* li > button svg {
   transform: rotate(-90deg);
 }
 li:hover > button svg {
   transform: rotate(+90deg);
-}
+} */
 
 
 @layer utilities {

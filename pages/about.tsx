@@ -1,4 +1,6 @@
 import AboutCommentComponent from "@/components/about/about-comment";
+import { ReactElement } from "react";
+import MainLayout from "./main-layout";
 
 export default function About() {
   return (
@@ -41,3 +43,7 @@ export default function About() {
     </div>
   );
 }
+
+About.getLayout = function getLayout(page: ReactElement) {
+  return <MainLayout>{page}</MainLayout>;
+};

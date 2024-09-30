@@ -8,6 +8,8 @@ import NewsletterComponent from "@/components/newsletter/newsletter";
 import BannerComponent from "@/components/banner/banner";
 import FooterComponent from "@/components/footer/footer";
 import BannerBigComponent from "@/components/banner/banner-big";
+import MainLayout from "./main-layout";
+import { ReactElement } from "react";
 
 
 // This gets called on every request
@@ -41,8 +43,6 @@ export default function Home(props: any) {
   const brands = JSON.parse(props.brands);
   return (
     <div className="">
-
-      <PcNavbarComponent />
       <div className="pt-4 px-10 flex flex-col gap-4">
         <div className="flex flex-row justify-between">
           {settings && (
@@ -119,3 +119,6 @@ export default function Home(props: any) {
 
   );
 }
+Home.getLayout = function getLayout(page: ReactElement) {
+  return <MainLayout>{page}</MainLayout>;
+};

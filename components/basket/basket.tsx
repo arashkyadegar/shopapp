@@ -2,7 +2,7 @@
 
 export default function BasketComponent() {
   return (
-    <div className="flex flex-col sm:flex-row justify-between container border border-gray-300 bg-white rounded-lg p-2 gap-2">
+    <div className="flex flex-col sm:flex-row justify-between container  p-4 gap-2">
       <div className="w-full flex flex-col border rounded-lg p-4  text-sm">
         <div className="flex flex-row justify-between">
           <div >
@@ -11,7 +11,6 @@ export default function BasketComponent() {
             </h1>
             <h1>۲ کالا</h1>
           </div>
-
           <button>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />

@@ -4,6 +4,8 @@ import PcNavbarComponent from "@/components/shared/navbar/pc-navbar";
 import SmTitleComponent from "@/components/shared/sm-title";
 import { turnToFa } from "@/utility/regex";
 import { getDefaultImageAvator } from "@/utility/imageUtility";
+import { ReactElement } from "react";
+import MainLayout from "../main-layout";
 // This gets called on every request
 export async function getServerSideProps(context: any) {
   const { id } = context.params;
@@ -22,7 +24,7 @@ export default function Product({ product }: any) {
   const mainImage = item.images.find((x: any) => x.status);
   return (
     <>
-      <PcNavbarComponent />
+
       <div className="flex flex-col sm:flex-row p-10  gap-4">
         <div className="w-full flex flex-col gap-2">
           <img
@@ -198,3 +200,7 @@ export default function Product({ product }: any) {
     </>
   );
 }
+
+Product.getLayout = function getLayout(page: ReactElement) {
+  return <MainLayout>{page}</MainLayout>;
+};
