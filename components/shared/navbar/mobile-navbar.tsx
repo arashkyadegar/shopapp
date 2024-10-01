@@ -10,29 +10,23 @@ export default function MobileNavbarComponent() {
 
 
   function togglePostMenu(event: any) {
-
     setAsideCellarDrpToggle(false);
     setAsideFinancialDrpToggle(false);
     setAsidePostDrpToggle(!asidePostDrpToggle);
   }
 
   function toggleCellarMenu(event: any) {
-
     setAsidePostDrpToggle(false);
     setAsideFinancialDrpToggle(false);
     setAsideCellarDrpToggle(!asideCellarDrpToggle);
   }
 
   function toggleFinancialMenu(event: any) {
-
     setAsideCellarDrpToggle(false);
     setAsidePostDrpToggle(false);
     setAsideFinancialDrpToggle(!asideFinancialDrpToggle);
   }
 
-  // function toggleAsideMenu(event: any) {
-  //   setAsideToggle(true);
-  // }
   return (
     <>
       <div className="flex flex-row-reverse  top-0 z-10 bg-white">
@@ -43,14 +37,14 @@ export default function MobileNavbarComponent() {
           }}
           data-collapse-toggle="navbar-sticky"
           type="button"
-          className="p-2 sm:hidden w-fit text-black flex border border-blue-600  justify-start items-center text-sm   rounded-lg outline-none "
+          className="p-2 md:hidden w-fit text-black flex  justify-start items-center text-sm   rounded-lg outline-none "
           aria-controls="navbar-sticky"
           aria-expanded="false"
         >
           <span className="sr-only">Open main menu</span>
-
+          {/* hamburger toggle button */}
           {!asideToggle && <svg
-            className="w-8 h-8  border p-1"
+            className="w-8 h-8 border p-1"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -64,34 +58,24 @@ export default function MobileNavbarComponent() {
               d="M1 1h15M1 7h15M1 13h15"
             />
           </svg>}
-
-          {asideToggle && <a     className="w-8 h-8  border p-1">X</a>}
+          {/* hamburger toggle button */}
+          {asideToggle &&
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8  border p-1">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+            </svg>
+          }
 
         </button>
+        {/* basket icon */}
+        <button className="p-2 md:hidden relative  text-black text-sm   rounded-lg outline-none ">
+          <span className="absolute bg-red-600 text-white flex justify-center items-center top-6 rounded-full left-5 w-6 h-6 text-xs">12</span>
 
-        <button className="p-2 sm:hidden  text-black text-sm   rounded-lg outline-none "
-
-        >
-          <svg
-            className="w-8 h-8 p-1"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 17 14"
-          >
-            <path
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M1 1h15M1 7h15M1 13h15"
-            />
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
           </svg>
         </button>
-
-        <button className="p-2 sm:hidden  text-black text-sm   rounded-lg outline-none "
-
-        >
+        {/* heart icon */}
+        <button className="p-2 md:hidden  text-black text-sm   rounded-lg outline-non">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -113,7 +97,7 @@ export default function MobileNavbarComponent() {
       <div
         className={
           asideToggle
-            ? "z-10 w-2/4 absolute bg-gray-50 flex flex-col justify-start sm:hidden m-1  top-0  right-0 "
+            ? "z-10 w-2/4 absolute bg-gray-50 flex flex-col justify-start md:hidden m-1  top-0  right-0 "
             : "z-10 w-full h-0 top-0 absolute flex flex-row-reverse "
         }
       >

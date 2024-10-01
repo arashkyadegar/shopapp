@@ -43,7 +43,9 @@ export default function Home(props: any) {
   const brands = JSON.parse(props.brands);
   return (
     <div className="">
-      <div className="pt-4 px-10 flex flex-col gap-4">
+      {/* extera border for mobile-navbar */}
+      <div className="border-t border-black md:hidden"></div>
+      <div className="pt-4 px-10 flex flex-col gap-4 ">
         <div className="flex flex-row justify-between">
           {settings && (
             <SliderMainComponent images={settings.slideImages} />
