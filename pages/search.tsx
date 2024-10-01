@@ -62,9 +62,9 @@ export default function Search(props: any) {
               <LabelComponent title="زیر مجموعه اصلی" name="CategoryId" required="true" />
               <div className=" flex flex-col gap-2 justify-end  bg-white   text-gray-900 text-sm rounded-lg  px-1">
                 {categories.map((item: any) => (
-                  <div className="flex flex-row gap-2">
+                  <div className="flex flex-row gap-2 " key={item._id}>
                     <input type="checkbox" key={item._id} value={item._id} />
-                    <LabelComponent title={item.name} name="CategoryId" />
+                    <LabelComponent  title={item.name} name="CategoryId" />
                   </div>
                 ))}
               </div>
@@ -95,9 +95,9 @@ export default function Search(props: any) {
         </div>
         <div className="flex w-full  sm:w-3/4  flex-col sm:flex-row justify-between container  p-4 gap-2">
           <div className="grid grid-cols-2  gap-8" >
-            {categories.map((item: any) => (
+            {/* {categories.map((item: any) => (
               <CategoryCardComponent key={item._id}  {...item} />
-            ))}
+            ))} */}
           </div>
         </div>
       </div>

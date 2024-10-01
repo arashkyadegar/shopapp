@@ -9,19 +9,19 @@ export default function MobileNavbarComponent() {
   const { asideFinancialDrpToggle, setAsideFinancialDrpToggle } = React.useContext(myAppContext);
 
 
-  function togglePostMenu(event: any) {
+  function togglePostMenu() {
     setAsideCellarDrpToggle(false);
     setAsideFinancialDrpToggle(false);
     setAsidePostDrpToggle(!asidePostDrpToggle);
   }
 
-  function toggleCellarMenu(event: any) {
+  function toggleCellarMenu() {
     setAsidePostDrpToggle(false);
     setAsideFinancialDrpToggle(false);
     setAsideCellarDrpToggle(!asideCellarDrpToggle);
   }
 
-  function toggleFinancialMenu(event: any) {
+  function toggleFinancialMenu() {
     setAsideCellarDrpToggle(false);
     setAsidePostDrpToggle(false);
     setAsideFinancialDrpToggle(!asideFinancialDrpToggle);
