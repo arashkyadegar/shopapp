@@ -12,6 +12,7 @@ const config: Config = {
         full: "100%"
       },
       colors: {
+        'black-rgba': 'rgba(0, 0, 0, 0.30)',
         background: "var(--background)",
         foreground: "var(--foreground)",
       },

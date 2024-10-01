@@ -29,7 +29,7 @@ const api =
     if (onStart) dispatch({ type: onStart });
     try {
       const response = await fetch(baseURL + url, requestOptions);
-
+console.log(baseURL + url)
       const result = await response.text();
 
       switch (response.status) {

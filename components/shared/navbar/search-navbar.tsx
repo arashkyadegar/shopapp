@@ -1,13 +1,24 @@
+import { useRouter } from 'next/navigation'
+import { useRef } from 'react';
 export default function SearchNavbarComponent() {
+  const router = useRouter();
+  const searchInputRef = useRef<HTMLInputElement>(null);
+  function submitSearch(event: any): void {
+    const text = searchInputRef.current.value
+    if (text.trim() != "") {
+      router.push(`/search?name=${text}`);
+    }
+  }
+
   return (<div className="text-lg hidden md:flex z-10 bg-white h-16  pt-1 justify-evenly items-center w-full gap-10">
     <div className="flex flex-row group w-2/4 justify-center  z-50 ">فروشگاه ساز</div>
     <div className="flex flex-row gap-2 w-full justify-center items-center border-b border-black text-gray-900 text-sm  px-1">
-
-      <input type="text" className="w-full    text-black text-sm rounded-lg  flex  p-2.5     outline-none" />
-
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6 ">
-        <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-      </svg>
+      <input type="text" ref={searchInputRef} className="w-full    text-black text-sm rounded-lg  flex  p-2.5     outline-none" />
+      <button onClick={submitSearch}>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6 ">
+          <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+        </svg>
+      </button>
     </div>
 
     <div className="flex flex-row group  justify-center  w-2/4 gap-2 ">
