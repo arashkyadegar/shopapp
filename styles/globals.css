@@ -96,6 +96,10 @@ li > ul {
 li:hover > ul {
   transform: translatex(101%) scale(1);
 }
+
+.addtobasket:hover ul {
+  transform: translatex(101%) scale(1);
+}
 /* li > button svg {
   transform: rotate(-90deg);
 }

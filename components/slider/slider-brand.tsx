@@ -1,6 +1,6 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 
-
+import Image from 'next/image'
 import 'swiper/swiper-bundle.css';
 
 // Import Swiper styles
@@ -16,10 +16,10 @@ import {
   Pagination,
   Autoplay
 } from "swiper/modules";
-import { getDefaultImageAvator } from "@/utility/imageUtility";
+import getDefaultImageAvator from "@/utility/imageUtility";
 
 export default function SliderBrandComponent({ images }: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
-console.log(images)
+
   return (
     <div className="w-full  col-span-3 relative bg-transparent">
       <Swiper
@@ -33,15 +33,21 @@ console.log(images)
         effect="slide"
       >
         {images.map((image: any) => ( // eslint-disable-line @typescript-eslint/no-explicit-any
-          <SwiperSlide      key={image.name}>
-            <img
+          <SwiperSlide key={image.image}>
+            <Image
+              src={getDefaultImageAvator(image.image)}
+              alt={image.name}
+              width={500}
+              height={500}
+            />
+            {/* <img
               src={getDefaultImageAvator(image.image)}
               width={500}
               height={500}
               className="w-full h-36 aspect-video  bg-transparent"
               alt={image.name}
-              // crossOrigin="anonymous"
-            />
+            // crossOrigin="anonymous"
+            /> */}
           </SwiperSlide>
         ))}
       </Swiper>

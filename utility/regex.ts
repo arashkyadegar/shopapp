@@ -37,6 +37,7 @@ export const turnToFa = (number: string) => {
   //   };
   let rslt = "";
   if (number != undefined) {
+
   const tmp_number = number.toString().split("");
     for (let i = 0; i < tmp_number.length; i++) {
       let x: any;

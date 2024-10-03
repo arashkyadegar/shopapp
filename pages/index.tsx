@@ -17,30 +17,33 @@ export async function getServerSideProps() {
 
 
   const baseURL = process.env.NEXT_PUBLIC_BASEURL;
-  const res = await fetch(`${baseURL}/api/wbproducts`);
-  const repo = await res.json();
-  const products = JSON.stringify(repo);
+  // const res = await fetch(`${baseURL}/api/wbproducts`);
+  // const repo = await res.json();
+  // const products = JSON.stringify(repo);
 
-  const res_settings = await fetch(`${baseURL}/api/wbsettings/1`);
-  const repo_settings = await res_settings.json();
-  const settings = JSON.stringify(repo_settings);
+  // const res_settings = await fetch(`${baseURL}/api/wbsettings/1`);
+  // const repo_settings = await res_settings.json();
+  // const settings = JSON.stringify(repo_settings);
 
-  const res_categories = await fetch(`${baseURL}/api/wbcategories`);
-  const repo_categories = await res_categories.json();
-  const categories = JSON.stringify(repo_categories);
+  // const res_categories = await fetch(`${baseURL}/api/wbcategories`);
+  // const repo_categories = await res_categories.json();
+  // const categories = JSON.stringify(repo_categories);
 
-  const res_brands = await fetch(`${baseURL}/api/wbbrands`);
-  const repo_brands = await res_brands.json();
-  const brands = JSON.stringify(repo_brands);
-
-  return { props: { products, settings, categories, brands } };
+  // const res_brands = await fetch(`${baseURL}/api/wbbrands`);
+  // const repo_brands = await res_brands.json();
+  // const brands = JSON.stringify(repo_brands);
+  const init_data = await fetch(`${baseURL}/init`);
+  const repo_data = await init_data.json();
+  const data = JSON.stringify(repo_data);
+  return { props: { data } };
 }
 
-export default function Home(props: any) {
-  const products = JSON.parse(props.products);
-  const categories = JSON.parse(props.categories);
-  const settings = JSON.parse(props.settings)[0];
-  const brands = JSON.parse(props.brands);
+export default function Home({ data }: any) {
+  const result = JSON.parse(data)
+  const products = result.products;
+  const categories = result.categories;
+  const settings = result.settings[0];
+  const brands = result.brands;
   return (
     <div className="">
       {/* extera border for mobile-navbar */}

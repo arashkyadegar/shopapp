@@ -1,6 +1,6 @@
 export default function NewsletterComponent() {
   return (
-    <div className="flex flex-col sm:flex-row justify-between bg-amber-200 p-4">
+    <div className="flex flex-col sm:flex-row justify-between bg-amber-200 p-4 my-4">
       <div className="flex  flex-col sm:flex-row w-full justify-between sm:justify-evenly gap-4 p-4">
         <div className="flex items-center justify-center font-bold gap-2">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-10 h-10">

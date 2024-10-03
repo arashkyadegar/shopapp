@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
-import { getDefaultImageAvator } from "@/utility/imageUtility";
-
+import getDefaultImageAvator  from "@/utility/imageUtility";
+import Image from 'next/image'
 export default function CategoryCardComponent(props: any) {
   console.log(props)
   return (
@@ -20,14 +20,22 @@ export default function CategoryCardComponent(props: any) {
                   query: { id: '1' },
                 }}
               >
-                <img
+                <Image
+                  src={getDefaultImageAvator(props.image)}
+                  className="z-0   w-full aspect-square cursor-pointer  rounded-xl"
+                  alt={props.name}
+                  title={props.name}
+                  width={500}
+                  height={500}
+                />
+                {/* <img
                   src={getDefaultImageAvator(props.image)}
                   className="z-0  min-h-48  min-w-48 max-h-48 max-w-48 
                    rounded-xl w-fit aspect-square cursor-pointer hover:scale-110 duration-150"
                   alt='category-thumb-1'
                   title='category-thumb-1'
-                  // crossOrigin="anonymous"
-                />
+                // crossOrigin="anonymous"
+                /> */}
               </Link>
             </div>
           </div>

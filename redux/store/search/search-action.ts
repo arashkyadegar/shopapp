@@ -1,6 +1,6 @@
 import { apiCallBegan } from "../api";
 
-export const searchProductsAction = (name: string, brands: string, priceMin: number, priceMax: number) =>
+export const searchProductsAction = (name: string, brands: string = "", priceMin: number = 0, priceMax: number = 100000000) =>
   apiCallBegan({
     url: `/api/wbproducts/search?name=${name}&brands=${brands}&priceMin=${priceMin}&priceMax=${priceMax}`,
     onSuccess: "products/productsFetched",

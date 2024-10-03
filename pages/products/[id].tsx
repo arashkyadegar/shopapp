@@ -1,11 +1,14 @@
-import ProductCardCenteredComponent from "@/components/product-card.tsx/product-card-centered";
 import ProductCardStarComponent from "@/components/product-card.tsx/product-card-star";
-import PcNavbarComponent from "@/components/shared/navbar/pc-navbar";
 import SmTitleComponent from "@/components/shared/sm-title";
 import { turnToFa } from "@/utility/regex";
-import { getDefaultImageAvator } from "@/utility/imageUtility";
-import { ReactElement } from "react";
+import getDefaultImageAvator from "@/utility/imageUtility";
+import { ReactElement, useEffect } from "react";
 import MainLayout from "../main-layout";
+import { useAppDispatch, useAppSelector } from "@/redux/store/hooks";
+import { searchProductsAction } from "@/redux/store/search/search-action";
+import ProductCardComponent from "@/components/product-card.tsx/product-card";
+import { getNewPrice } from "@/utility/discount";
+import Image from "next/image";
 // This gets called on every request
 export async function getServerSideProps(context: any) {
   const { id } = context.params;
@@ -18,22 +21,41 @@ export async function getServerSideProps(context: any) {
 
 
 export default function Product({ product }: any) {
+
   const item = JSON.parse(product)[0];
+  console.log(item)
   const Desc = { __html: item.desc };
   const longDesc = { __html: item.longdesc };
   const mainImage = item.images.find((x: any) => x.status);
+  const dispatch = useAppDispatch();
+  const productsState = useAppSelector((state) => state.entities.products);
+
+  useEffect(() => {
+    dispatch(searchProductsAction(item.name));
+  }, []);
   return (
     <>
-
+      {/* extera border for mobile-navbar */}
+      <div className="border-t border-black md:hidden"></div>
       <div className="flex flex-col sm:flex-row p-10  gap-4">
         <div className="w-full flex flex-col gap-2">
-          <img
-            src={mainImage ? getDefaultImageAvator(mainImage.name) : ""}
+          <Image
+            key={mainImage.name}
+            src={getDefaultImageAvator(mainImage.name)}
             alt={mainImage ? mainImage.alt : ""}
+            width={500}
+            height={500}
           />
+
           <div className="flex flex-row justify-center gap-2">
             {item.images.map((item: any) => (
-              <img key={item.name} src={getDefaultImageAvator(item.name)} className="w-20 border hover:border-green-200 cursor-pointer" />
+              <Image
+                key={item.name}
+                src={getDefaultImageAvator(item.name)}
+                alt={item.name}
+                width={500}
+                height={500}
+                className="w-20 border hover:border-green-200 cursor-pointer" />
             ))}
           </div>
         </div>
@@ -53,26 +75,27 @@ export default function Product({ product }: any) {
             </div>
 
           </div>
-          <div className="flex flex-row gap-2 text-xs ">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-5">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 0 0 9.568 3Z" />
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 6h.008v.008H6V6Z" />
-            </svg>
-
-            <a>دسته :</a>
-            {item.tags.map((item: any) => (
-              <a key={item} href="#" className="text-gray-400">{item}</a>
-            ))}
-          </div>
+          {item.tags && (
+            <div className="flex flex-row gap-2 text-xs ">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 0 0 9.568 3Z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 6h.008v.008H6V6Z" />
+              </svg>
+              <a>دسته :</a>
+              {item.tags.map((item: any) => (
+                <a key={item} href="#" className="text-gray-400">{item}</a>
+              ))}
+            </div>
+          )}
           <h5 className="text-2xl p-2 flex flex-col sm:flex-row text-green-600 text-right font-semibold  dark:text-white  border-b border-gray-200">
             <span className="text-red-600 line-through ml-5">
               {turnToFa(item.price)}  تومان
             </span>
 
-            <a>{turnToFa(item.price)}  تومان</a>
+            <a>{turnToFa(getNewPrice(item.price, item.discount).toString())}  تومان</a>
 
             <span className="text-gray-400 mr-5 text-md">
-              %{turnToFa('10')}
+              %{turnToFa(item.discount)}
             </span>
           </h5>
 
@@ -119,22 +142,22 @@ export default function Product({ product }: any) {
             <div dangerouslySetInnerHTML={longDesc} className="leading-relaxed" />
           </div>
         </div>
-        {item.extras.length > 0 && (
+        {item.extras && (
           <div className="flex flex-col mx-10  mb-10" >
             <div className="border-b border-gray-200 mb-4">
               <h1 className="border-b w-fit border-green-700 pb-2  font-bold text-2xl">اطلاعات اضافی</h1>
             </div>
-       
-              <div className="flex flex-col text-md border" >
-                {item.extras.map((item: any) => (
-                  <div className="flex flex-row text-md border" key={item.name}>
-                    <div className="w-full border-l border-b p-2 bg-white">{item.name}</div>
-                    <div className="w-full border-l border-b p-2 bg-gray-50">{item.value}</div>
-                  </div>
-                ))}
-              </div>
+
+            <div className="flex flex-col text-md border" >
+              {item.extras.map((item: any) => (
+                <div className="flex flex-row text-md border" key={item.name}>
+                  <div className="w-full border-l border-b p-2 bg-white">{item.name}</div>
+                  <div className="w-full border-l border-b p-2 bg-gray-50">{item.value}</div>
+                </div>
+              ))}
             </div>
-     
+          </div>
+
         )}
 
         <div className="flex flex-col mx-10  mb-10">
@@ -170,7 +193,7 @@ export default function Product({ product }: any) {
               </div>
 
               <div className="flex flex-row  items-center">
-                <SmTitleComponent title="۱ ستاره" />
+                <SmTitleComponent title="۱" />
                 <div className="flex w-full bg-gray-200 h-4 rounded-sm overflow-hidden">
                   <div className=" w-1/12 h-full bg-teal-600 text-white text-center items-center justify-center text-xs "><a>۱۰%</a></div>
                 </div>
@@ -188,10 +211,9 @@ export default function Product({ product }: any) {
             <h1 className="border-b w-fit border-green-700 pb-2  font-bold text-2xl">محصولات مرتبط</h1>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-4 sm:grid-cols-2 gap-8  h-80" >
-            <ProductCardCenteredComponent color="bg-red-400" title="جدید" />
-            <ProductCardCenteredComponent color="bg-orange-400" title="پرفروش" />
-            <ProductCardCenteredComponent color="bg-pink-400" title="فروش" />
-            <ProductCardCenteredComponent color="bg-green-200" title="فروش" />
+            {productsState.list.filter((x: any) => x._id != item._id).map((product: any) => (
+              <ProductCardComponent key={product._id}  {...product} />
+            ))}
           </div>
         </div>
       </div>

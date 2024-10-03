@@ -91,8 +91,14 @@ export default function Search(props: any) {
     dispatch(searchProductsAction(search_name, brands, priceMin, priceMax))
   }
 
+  function searchClearFiters(event: any): void {
+    dispatch(searchFormCleared());
+  }
+
   return (
     <>
+      {/* extera border for mobile-navbar */}
+      <div className="border-t border-black md:hidden"></div>
       <div className="flex w-full flex-col sm:flex-row justify-between container  p-4 gap-2">
         <div className="flex w-full sm:w-1/4 flex-col sm:flex-row justify-between container  p-4 gap-2">
           <div className="w-full flex flex-col border rounded-lg p-4  text-sm">
@@ -106,7 +112,7 @@ export default function Search(props: any) {
                 </h1>
 
               </div>
-              <button className="text-red-600 mb-2 ">
+              <button className="text-red-600 mb-2 " onClick={searchClearFiters}>
                 حذف فیلترها
               </button>
             </div>
@@ -139,7 +145,7 @@ export default function Search(props: any) {
               <LabelComponent title="قیمت از" name="productname" /> {searchFormState.data.priceMin}
               <div className=" flex flex-col gap-2 justify-end  bg-white   text-gray-900 text-sm rounded-lg  px-1">
                 <div className="flex w-full flex-row gap-2 justify-end items-center bg-gray-100   text-gray-900 text-sm rounded-lg  px-1">
-                  <input type="range" name="" id="" defaultValue={0} step={5000} min={0} max={1000000} className="w-full" onMouseUp={fillSearchPriceMin} />
+                  <input type="range" name="" id="" defaultValue={searchFormState.data.priceMin} step={5000} min={0} max={1000000} className="w-full" onMouseUp={fillSearchPriceMin} />
                 </div>
               </div>
             </div>
@@ -148,7 +154,7 @@ export default function Search(props: any) {
               <LabelComponent title="قیمت تا" name="productname" /> {searchFormState.data.priceMax}
               <div className=" flex flex-col gap-2 justify-end  bg-white   text-gray-900 text-sm rounded-lg  px-1">
                 <div className="flex w-full flex-row gap-2 justify-end items-center bg-gray-100   text-gray-900 text-sm rounded-lg  px-1">
-                  <input type="range" name="" id="" defaultValue={0} step={5000} min={0} max={1000000} className="w-full" onMouseUp={fillSearchPriceMax} />
+                  <input type="range" name="" id=""  onMouseUp={fillSearchPriceMax} defaultValue={searchFormState.data.priceMax} step={5000} min={0} max={1000000} className="w-full" />
                 </div>
               </div>
             </div>
