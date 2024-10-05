@@ -1,5 +1,9 @@
 import { createContext } from "react";
 const myAppContext = createContext({
+  isCheckout: false,
+  setIsCheckout: (isCheckout: boolean) => { },
+  basketDrpDwnIsOpen: false,
+  setBasketdrpDwnIsOpen: (basketDrpDwnIsOpen: boolean) => { },
   drpDwnIsOpen: false,
   setDrpDwnIsOpen: (drpDwnIsOpen: boolean) => { },
   storeUserLinkDlgShow: false,

@@ -1,7 +1,16 @@
+import BasketComponent from '@/components/basket/basket';
+import myAppContext from '@/components/context/context';
 import { turnToFa } from '@/utility/regex';
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
+import React from 'react';
 import { useRef } from 'react';
 export default function SearchNavbarComponent() {
+  const { isCheckout, setIsCheckout } = React.useContext(myAppContext);
+  const pathname = usePathname()
+
+  if (pathname === '/checkout') {
+    setIsCheckout(true);
+  } else { setIsCheckout(false); }
   const router = useRouter();
   const searchInputRef = useRef<HTMLInputElement>(null);
   function submitSearch(event: any): void {
@@ -44,13 +53,21 @@ export default function SearchNavbarComponent() {
         </svg>
       </button>
       {/* basket-icon */}
-      <button className="relative">
+      <li className="relative basket-icon  list-none  cursor-pointer">
         {/* notification */}
         <span className="absolute bg-red-600 text-white flex justify-center items-center top-5 rounded-full left-2 w-6 h-6 text-xs">{turnToFa("12")}</span>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
           <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
         </svg>
-      </button>
+        {!isCheckout && (
+          <ul className='absolute bg-white z-20 shadow-lg shadow-gray-400' >
+            <li>
+              <BasketComponent />
+            </li>
+          </ul>
+        )}
+
+      </li>
 
     </div>
 

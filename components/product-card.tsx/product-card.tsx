@@ -7,9 +7,6 @@ import getDefaultImageAvator from "@/utility/imageUtility";
 import Image from 'next/image'
 import { getNewPrice } from "@/utility/discount";
 export default function ProductCardComponent(props: any) {
-
-  const discount = props.discount;
-
   const mainImage = props.images.find((x: any) => x.status);
 
   return (
@@ -20,7 +17,7 @@ export default function ProductCardComponent(props: any) {
                   border-green-200 transition duration-200 hover:shadow-lg">
         <div className="overflow-hidden justify-center">
           <div className=" w-full justify-center relative">
-            {discount > 0 && (
+            {props.discount > 0 && (
               <ProductCardTagComponent color={props.color} title={props.title} />
             )}
             <div className="flex justify-center w-full">

@@ -75,7 +75,7 @@ export default function Home({ data }: any) {
 
         <div className="grid grid-cols-1 lg:grid-cols-4 sm:grid-cols-2 gap-8" >
           {products.map((item: any) => (
-            <ProductCardComponent key={item._id} color="bg-green-400" title="جدید" {...item} />
+            <ProductCardComponent discount={item.discount} key={item._id} color="bg-green-400" title="جدید" {...item} />
           ))}
         </div>
 

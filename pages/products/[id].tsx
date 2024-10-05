@@ -92,7 +92,7 @@ export default function Product({ product }: any) {
               {turnToFa(item.price)}  تومان
             </span>
 
-            <a>{turnToFa(getNewPrice(item.price, item.discount).toString())}  تومان</a>
+            <a>{turnToFa((getNewPrice(item.price, item.discount).toString()))}  تومان</a>
 
             <span className="text-gray-400 mr-5 text-md">
               %{turnToFa(item.discount)}
@@ -152,7 +152,7 @@ export default function Product({ product }: any) {
               {item.extras.map((item: any) => (
                 <div className="flex flex-row text-md border" key={item.name}>
                   <div className="w-full border-l border-b p-2 bg-white">{item.name}</div>
-                  <div className="w-full border-l border-b p-2 bg-gray-50">{item.value}</div>
+                  <div className="w-full border-l border-b p-2 bg-gray-50">{ item.value}</div>
                 </div>
               ))}
             </div>
