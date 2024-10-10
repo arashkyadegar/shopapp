@@ -79,9 +79,11 @@ export default function Home({ data }: any) {
           ))}
         </div>
 
-        <div className="flex flex-col items-center justify-center sm:items-start bg-[#F4F1F0] p-4 gap-4">
-          <h1 className="text-2xl font-bold text-green-800">مارک ویژه<span className="text-black"> محبوب</span></h1>
-          <SliderBrandComponent images={brands} />
+        <div className="flex flex-row sm:flex-col items-center justify-center sm:items-start bg-[#F4F1F0] p-2 gap-1">
+          <h1 className="sm:w-1/6 text-center border border-red-400 text-sm sm:text-2xl font-bold text-green-800">مارک ویژه<span className="text-black"> محبوب</span></h1>
+          <div className="w-5/6 sm:w-full p-2 flex items-start">
+            <SliderBrandComponent images={brands} />
+          </div>
         </div>
       </div>
 

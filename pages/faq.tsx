@@ -26,7 +26,7 @@ export default function Faq({ faqs }: any) {
           >
             <h1>{item.name}</h1>
             {item.faqs.map((faq: any) => (
-              <div
+              <div key={item._id}
                 className={
                   item.display
                     ? "w-full flex flex-col gap-2 p-2"
