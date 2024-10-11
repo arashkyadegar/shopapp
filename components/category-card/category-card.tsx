@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import getDefaultImageAvator  from "@/utility/imageUtility";
+import getDefaultImageAvator from "@/utility/imageUtility";
 import Image from 'next/image'
 export default function CategoryCardComponent(props: any) {
   console.log(props)
@@ -16,15 +16,14 @@ export default function CategoryCardComponent(props: any) {
             <div className="flex justify-center">
               <Link
                 href={{
-                  pathname: `/product`,
-                  query: { id: '1' },
+                  pathname: `/product-category/${props.name}`
                 }}
               >
                 <Image
                   src={getDefaultImageAvator(props.image)}
                   className="z-0   w-full aspect-square cursor-pointer  rounded-xl"
-                  alt={props.name}
-                  title={props.name}
+                  alt={props.menuTitle}
+                  title={props.menuTitle}
                   width={500}
                   height={500}
                 />
@@ -41,7 +40,7 @@ export default function CategoryCardComponent(props: any) {
           </div>
         </div>
         <h5 className="text-lg mt-2 px-4 text-black text-center font-semibold tracking-tight dark:text-white">
-          {props.name}
+          {props.menuTitle}
         </h5>
 
       </div>

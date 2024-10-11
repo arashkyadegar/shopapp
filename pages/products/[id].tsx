@@ -1,6 +1,6 @@
 import ProductCardStarComponent from "@/components/product-card.tsx/product-card-star";
 import SmTitleComponent from "@/components/shared/sm-title";
-import { turnToFa } from "@/utility/regex";
+import { numberWithCommas, turnToFa } from "@/utility/regex";
 import getDefaultImageAvator from "@/utility/imageUtility";
 import { ReactElement, useEffect } from "react";
 import MainLayout from "../main-layout";
@@ -23,7 +23,7 @@ export async function getServerSideProps(context: any) {
 export default function Product({ product }: any) {
 
   const item = JSON.parse(product)[0];
-  console.log(item)
+
   const Desc = { __html: item.desc };
   const longDesc = { __html: item.longdesc };
   const mainImage = item.images.find((x: any) => x.status);
@@ -89,11 +89,9 @@ export default function Product({ product }: any) {
           )}
           <h5 className="text-2xl p-2 flex flex-col sm:flex-row text-green-600 text-right font-semibold  dark:text-white  border-b border-gray-200">
             <span className="text-red-600 line-through ml-5">
-              {turnToFa(item.price)}  تومان
+              {(turnToFa(item.price))}  تومان
             </span>
-
             <a>{turnToFa((getNewPrice(item.price, item.discount).toString()))}  تومان</a>
-
             <span className="text-gray-400 mr-5 text-md">
               %{turnToFa(item.discount)}
             </span>
@@ -152,7 +150,7 @@ export default function Product({ product }: any) {
               {item.extras.map((item: any) => (
                 <div className="flex flex-row text-md border" key={item.name}>
                   <div className="w-full border-l border-b p-2 bg-white">{item.name}</div>
-                  <div className="w-full border-l border-b p-2 bg-gray-50">{ item.value}</div>
+                  <div className="w-full border-l border-b p-2 bg-gray-50">{item.value}</div>
                 </div>
               ))}
             </div>

@@ -10,7 +10,7 @@ export class dic {
   }
 }
 
-export const turnToFa = (number: string) => {
+export const turnToFa = (inputNumber: string) => {
   const persian = [
     new dic("0", "۰"),
     new dic("1", "۱"),
@@ -24,22 +24,24 @@ export const turnToFa = (number: string) => {
     new dic("9", "۹"),
   ];
 
+  const number = numberWithCommas(inputNumber)
   let rslt = "";
   if (number != undefined) {
 
-  const tmp_number = number.toString().split("");
+    const tmp_number = number.toString().split("");
     for (let i = 0; i < tmp_number.length; i++) {
       let x: any;
-      if (tmp_number[i] != ".") {
-        x = parseInt(tmp_number[i]);
-        rslt = rslt + persian[x]._fa;
+      if (tmp_number[i] == '.' || tmp_number[i] == ',') {
+        rslt = rslt + tmp_number[i];
       } else {
-        rslt = rslt + ".";
+        const x = parseInt(tmp_number[i]);
+        rslt = rslt + persian[x]._fa;
       }
     }
   }
-  //   for (let i = 0; i < number.length; i++) {
-  //     persianNumber += number[i];
-  //   }
   return rslt;
 };
+
+export const numberWithCommas = (x: string) => {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
