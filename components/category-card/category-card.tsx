@@ -16,8 +16,9 @@ export default function CategoryCardComponent(props: any) {
             <div className="flex justify-center">
               <Link
                 href={{
-                  pathname: `/product-category/${props.name}`
-                }}
+                  pathname: `/product-category/${props.name}`,
+                  query: { page: 1 }
+                }} 
               >
                 <Image
                   src={getDefaultImageAvator(props.image)}

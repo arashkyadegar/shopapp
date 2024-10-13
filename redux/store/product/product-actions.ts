@@ -11,10 +11,23 @@ export const getCategoryAction = (id: any) =>
       "Content-Type": "application/json",
     },
   });
-
-export const getProductsAction = (sort: string) =>
+export const searchProductsAction = (name: string, page: number = 1) =>
   apiCallBegan({
-    url: `/api/wbproducts?sortby=${sort}`,
+    url: `/products/search?name=${name}&page=${page}`,
+    onSuccess: "products/productsFetched",
+    onError: "products/productsLoadingStoped",
+    onStart: "products/productsRequested",
+    method: "GET",
+    // credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    //body: JSON.stringify(product),
+  });
+  
+export const getProductsAction = (category: string, page: number = 1, sort: string) =>
+  apiCallBegan({
+    url: `/api/wbproducts?category=${category}&sortby=${sort}&page=${page}`,
     onSuccess: "products/productsFetched",
     onError: "products/productsLoadingStoped",
     onStart: "products/productsRequested",
@@ -23,7 +36,6 @@ export const getProductsAction = (sort: string) =>
     headers: {
       "Content-Type": "application/json",
     },
-    //body: JSON.stringify(product),
   });
 
 

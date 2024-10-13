@@ -66,11 +66,8 @@ export default function Product({ product }: any) {
           <div className="flex flex-col sm:flex-row justify-between border-b border-gray-200 pb-2">
             <h1>برند : بوت استرپ</h1>
 
-            <div className="flex flex-row items-center">
-              <ProductCardStarComponent />
-              <ProductCardStarComponent />
-              <ProductCardStarComponent />
-              <ProductCardStarComponent />
+            <div className="flex flex-row items-center gap-2">
+              <ProductCardStarComponent value={45} />
               <h1>(۲۵ بازخورد)</h1>
             </div>
 

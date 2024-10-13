@@ -16,11 +16,11 @@ export default function ProductCardComponent(props: any) {
                   overflow-hidden text-sm  bg-white shadow-gray-600  
                   border-green-200 transition duration-200 hover:shadow-lg">
         <div className="overflow-hidden justify-center">
-          <div className=" w-full justify-center relative">
+          <div className=" w-full justify-center relative p-1">
             {props.discount > 0 && (
               <ProductCardTagComponent color={props.color} title={props.title} />
             )}
-            <div className="flex justify-center w-full">
+            <div className="flex justify-center w-full ">
               <Link
                 href={{
                   pathname: `/products/${props._id}`
@@ -50,17 +50,15 @@ export default function ProductCardComponent(props: any) {
           {props.category ? props.category.pageTitle : "نامشخص"}
         </h5>
 
-        <h5 className="text-lg mt-2 px-4 text-black text-right font-semibold tracking-tight dark:text-white">
+        <h5 className="text-lg overflow-hidden h-8 mt-2 px-4 text-black text-right font-semibold tracking-tight dark:text-white">
           {props.name}
         </h5>
-        <div className="flex flex-row px-4 mt-2 gap-2">
+        <div className="flex flex-row px-4 mt-2 gap-2 justify-between ">
+          <h1 className="text-xs text-gray-400 ">{turnToFa(props.discount)}% تخفیف</h1>
           <div className="flex flex-row items-center justify-center">
-            <ProductCardStarComponent />
-            <ProductCardStarComponent />
-            <ProductCardStarComponent />
-            <ProductCardStarComponent />
+            <ProductCardStarComponent value={30} />
           </div>
-          <h1 className="text-xs text-gray-400 ">{turnToFa(props.discount)}%</h1>
+
         </div>
 
         <div className="h-18">

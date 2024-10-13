@@ -2,7 +2,6 @@ import ProductCardComponent from "@/components/product-card.tsx/product-card";
 import CategoryCardComponent from "@/components/category-card/category-card";
 import SliderMainComponent from "@/components/slider/slider-main";
 import ServiceCardComponent from "@/components/service-card/service-card";
-import PcNavbarComponent from "@/components/shared/navbar/pc-navbar";
 import SliderBrandComponent from "@/components/slider/slider-brand";
 import NewsletterComponent from "@/components/newsletter/newsletter";
 import BannerComponent from "@/components/banner/banner";
@@ -11,27 +10,9 @@ import BannerBigComponent from "@/components/banner/banner-big";
 import MainLayout from "./main-layout";
 import { ReactElement } from "react";
 
-
 // This gets called on every request
 export async function getServerSideProps() {
-
-
   const baseURL = process.env.NEXT_PUBLIC_BASEURL;
-  // const res = await fetch(`${baseURL}/api/wbproducts`);
-  // const repo = await res.json();
-  // const products = JSON.stringify(repo);
-
-  // const res_settings = await fetch(`${baseURL}/api/wbsettings/1`);
-  // const repo_settings = await res_settings.json();
-  // const settings = JSON.stringify(repo_settings);
-
-  // const res_categories = await fetch(`${baseURL}/api/wbcategories`);
-  // const repo_categories = await res_categories.json();
-  // const categories = JSON.stringify(repo_categories);
-
-  // const res_brands = await fetch(`${baseURL}/api/wbbrands`);
-  // const repo_brands = await res_brands.json();
-  // const brands = JSON.stringify(repo_brands);
   const init_data = await fetch(`${baseURL}/init`);
   const repo_data = await init_data.json();
   const data = JSON.stringify(repo_data);
@@ -45,7 +26,7 @@ export default function Home({ data }: any) {
   const settings = result.settings[0];
   const brands = result.brands;
   return (
-    <div className="">
+    <>
       {/* extera border for mobile-navbar */}
       <div className="border-t border-black md:hidden"></div>
       <div className="pt-4 px-10 flex flex-col gap-4 ">
@@ -72,23 +53,24 @@ export default function Home({ data }: any) {
             </svg>
           </a>
         </div>
-
+        {/* محصولات */}
         <div className="grid grid-cols-1 lg:grid-cols-4 sm:grid-cols-2 gap-8" >
-          {products.map((item: any) => (
+          {products.rows.map((item: any) => (
             <ProductCardComponent discount={item.discount} key={item._id} color="bg-green-400" title="جدید" {...item} />
           ))}
         </div>
+      </div>
 
-        <div className="flex flex-row sm:flex-col items-center justify-center sm:items-start bg-[#F4F1F0] p-2 gap-1">
-          <h1 className="sm:w-full w-1/6 text-center text-sm sm:text-2xl font-bold text-green-800">مارک های<span className="text-black"> محبوب</span></h1>
-          <div className="w-5/6 sm:w-full p-2 flex items-start">
-            <SliderBrandComponent images={brands} />
-          </div>
+      {/* برند ها    */}
+      <div className="flex flex-row sm:flex-col items-center justify-center sm:items-start bg-[#F4F1F0] my-10 gap-1">
+        <h1 className="sm:w-full w-1/6 text-center text-sm sm:text-2xl font-bold text-green-800">مارک های<span className="text-black"> محبوب</span></h1>
+        <div className="w-5/6 sm:w-full p-2 flex items-start">
+          <SliderBrandComponent images={brands} />
         </div>
       </div>
 
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 w-full gap-8 p-10">
+      {/* بنرها */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 w-full gap-8 p-5">
         <BannerComponent image="banner-1.png" title="پیشنهاد هوشمندانه"
           main="۲۰ ٪ پس انداز کنید کیف زنانه" footer="" />
         <BannerComponent image="banner-2.png" title="حراج" main="تابستان گرم عالی مجموعه" footer="" />
@@ -111,18 +93,16 @@ export default function Home({ data }: any) {
           </div>
         </div>
 
+        {/* دسته بندی ها */}
         <div className="grid grid-cols-1 lg:grid-cols-4 sm:grid-cols-2 gap-8" >
           {categories.map((item: any) => (
             <CategoryCardComponent key={item._id}  {...item} />
           ))}
-
         </div>
       </div>
       <NewsletterComponent />
-
-
       <FooterComponent />
-    </div>
+    </>
 
   );
 }
